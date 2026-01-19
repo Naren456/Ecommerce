@@ -2,12 +2,14 @@ spring:
   application:
     name: Ecommerce
 
+  # Database Configuration
   datasource:
     url: jdbc:postgresql://localhost:5432/ecommerce_db
     username: postgres
-    password: newpassword
+    password: <your_database_password>
     driver-class-name: org.postgresql.Driver
 
+  # JPA / Hibernate Configuration
   jpa:
     hibernate:
       ddl-auto: update
@@ -16,6 +18,12 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
+
+
+razorpay:
+  key-id: <your_razorpay_key_id>
+  key-secret: <your_razorpay_key_secret>
+  webhook-secret: <your_webhook_secret_for_verification>
 
 server:
   port: 8080

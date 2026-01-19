@@ -17,7 +17,7 @@ public class Payment {
 
     private String paymentGateway; // MOCK / RAZORPAY
     private String transactionId;
-
+    private String razorpayOrderId; // Added field
     @Enumerated(EnumType.STRING)
     private PaymentStatus status;
 
@@ -29,6 +29,8 @@ public class Payment {
         this.transactionId = transactionId;
         this.status = status;
     }
+    public String getRazorpayOrderId() { return razorpayOrderId; }
+    public void setRazorpayOrderId(String razorpayOrderId) { this.razorpayOrderId = razorpayOrderId; }
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
