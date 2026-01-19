@@ -18,7 +18,7 @@ public class PaymentController {
     /**
      * Create a payment for an order (MOCK)
      */
-    @PostMapping
+    @PostMapping("/create")
     public Payment createPayment(@RequestBody PaymentRequest request) {
         return paymentService.createPayment(request.getOrderId());
     }

@@ -8,11 +8,12 @@ import com.shopping.Ecommerce.model.User;
 import com.shopping.Ecommerce.repository.CartRepository;
 import com.shopping.Ecommerce.repository.ProductRepository;
 import com.shopping.Ecommerce.repository.UserRepository;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
+@Transactional
 public class CartService {
 
     private final CartRepository cartRepository;

@@ -7,9 +7,11 @@ import com.shopping.Ecommerce.model.*;
 import com.shopping.Ecommerce.repository.*;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 
 @Service
+@Transactional
 public class PaymentService {
 
     private final PaymentRepository paymentRepository;
