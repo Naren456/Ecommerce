@@ -2,6 +2,44 @@
 
 This is a Spring Boot backend for an e-commerce application. It includes Product, Cart, Order management, and Razorpay payment integration.
 
+## Architecture
+
+```mermaid
+graph TD
+    Client[Client / Browser] -->|REST API| Controller
+    Controller --> Service
+    Service --> Repository
+    Repository --> Database[(PostgreSQL)]
+    
+    Service -- Create Order --> Razorpay[Razorpay API]
+    Razorpay -- Webhook --> Controller
+```
+
+## Payment Flow
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant Frontend
+    participant Backend
+    participant Razorpay
+
+    User->>Frontend: Click "Pay Now"
+    Frontend->>Backend: POST /api/payments/create
+    Backend->>Razorpay: Create Order ({amount, currency})
+    Razorpay-->>Backend: Return razorpay_order_id
+    Backend-->>Frontend: Return razorpay_order_id
+    
+    Frontend->>Razorpay: Open Checkout Popup
+    User->>Razorpay: Enter Payment Details
+    Razorpay-->>Frontend: Payment Success
+    
+    Note over Razorpay, Backend: Async Webhook
+    Razorpay->>Backend: POST /api/webhooks/payment
+    Backend->>Backend: Verify Signature
+    Backend->>Backend: Update Order Status to PAID
+```
+
 ## Prerequisites
 
 - Java 21
